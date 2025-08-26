@@ -1,0 +1,43 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Docker and Python cache
+*.log
+*.db
+*.sqlite3
+*.env
+.env.*
+*.egg-info/
+dist/
+build/
+*.pid
+
+# VSCode or IDE files
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store
+
+# Pytest
+.cache/
+.coverage
+pytest_cache/
+
+# Coverage reports
+htmlcov/
+
+# Test results
+junit*.xml
+
+# Containers
+__docker__
