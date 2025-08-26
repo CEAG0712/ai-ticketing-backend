@@ -1,0 +1,26 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+    volumes: ["mongo_data:/data/db"]
+
+  api:
+    build: ./services/api
+    env_file: .env
+    depends_on: ["redis", "mongo"]
+    ports: ["8000:8000"]
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  worker:
+    build: ./services/worker
+    env_file: .env
+    depends_on: ["redis", "mongo"]
+    command: ["python", "-m", "worker.main"]
+
+volumes:
+  mongo_data:
