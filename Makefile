@@ -21,3 +21,14 @@ format:
 
 lint:
 	echo "🔍 Run ruff and mypy"
+
+.PHONY: test test-smoke test-contract
+
+test-smoke: ## run only smoke tests (should pass in Step 3)
+	. .venv/bin/activate && pytest -q -m smoke
+
+test-contract: ## run contract tests (expected xfail in Step 3)
+	. .venv/bin/activate && pytest -q -m contract -rxX
+
+test: ## run all tests
+	. .venv/bin/activate && pytest -q

@@ -1,0 +1,33 @@
+{
+  "info": {
+    "name": "AI Ticketing Backend (Step 3)",
+    "_postman_id": "b7f4f0aa-8b1e-4b9e-9c8d-aaa000000001",
+    "description": "Smoke + contract requests for Step 3/4",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /healthz (smoke)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/healthz"
+      }
+    },
+    {
+      "name": "POST /ticket (contract; Step 4)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subject\": \"Refund request\",\n  \"description\": \"Charged twice\"\n}"
+        },
+        "url": "{{base_url}}/ticket"
+      }
+    }
+  ],
+  "event": []
+}
