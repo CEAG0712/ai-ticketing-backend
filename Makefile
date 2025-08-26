@@ -3,8 +3,12 @@
 up: ## Start local stack
 	docker compose --env-file .env up -d --build
 
-down: ## Stop all containers
-	docker compose --env-file .env down -v
+up-test:
+	docker compose --env-file .env.test up -d --build
+
+down:
+	docker compose --env-file .env down -v || true
+	docker compose --env-file .env.test down -v || true
 
 logs: ## Tail logs
 	docker compose logs -f --tail=100
