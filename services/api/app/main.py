@@ -1,6 +1,8 @@
 import logging
 from fastapi import FastAPI
 from .config import settings
+from app.routes.tickets import router as tickets_router  # noqa: E402
+
 
 logging.basicConfig(level=getattr(logging, settings.effective_log_level, logging.INFO))
 logger = logging.getLogger("api")
@@ -12,3 +14,5 @@ app = FastAPI()
 @app.get("/healthz")
 def healthz():
     return {"ok": True}
+
+app.include_router(tickets_router)
